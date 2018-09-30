@@ -518,7 +518,11 @@ public extension UIBarButtonItem {
         setTitleTextAttributes([NSAttributedStringKey.font: font!], for: .normal)
         setTitleTextAttributes([NSAttributedStringKey.font: font!], for: .highlighted)
         setTitleTextAttributes([NSAttributedStringKey.font: font!], for: .disabled)
-        setTitleTextAttributes([NSAttributedStringKey.font: font!], for: .focused)
+        if #available(iOS 9.0, *) {
+            setTitleTextAttributes([NSAttributedStringKey.font: font!], for: .focused)
+        } else {
+            // Fallback on earlier versions
+        }
         title = icon.text
         tintColor = color
     }
